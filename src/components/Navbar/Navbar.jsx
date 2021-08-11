@@ -12,13 +12,13 @@ import { ShoppingCart } from "@material-ui/icons";
 import useStyles from "./styles";
 import logo from "../../assets/logo.png";
 
-const Navbar = () => {
+const Navbar = ({ totalItems }) => {
   const classes = useStyles();
   return (
     <>
       <AppBar position="fixed" className={classes.appBar} color="inherit">
         <Toolbar>
-          <Typography>
+          <Typography variant="h6" className={classes.title} color="inherit">
             <img
               src={logo}
               alt="MBNGoods"
@@ -29,9 +29,11 @@ const Navbar = () => {
           </Typography>
           <div className={classes.grow} />
           <div className={classes.button}>
-            <Badge badgeContent={2} color="secondary">
-              <ShoppingCart />
-            </Badge>
+            <IconButton aria-label="Show cart items" color="inherit">
+              <Badge badgeContent={totalItems} color="secondary">
+                <ShoppingCart />
+              </Badge>
+            </IconButton>
           </div>
         </Toolbar>
       </AppBar>
