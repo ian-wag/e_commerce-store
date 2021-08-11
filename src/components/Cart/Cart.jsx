@@ -1,5 +1,6 @@
 import React from "react";
 import { Container, Typography, Button, Grid } from "@material-ui/core";
+import { Link } from "react-router-dom";
 import useStyles from "./styles";
 import CartItem from "./CartItem/CartItem";
 
@@ -7,7 +8,12 @@ const Cart = ({ cart }) => {
   const classes = useStyles();
 
   const EmptyCart = () => (
-    <Typography variant="subtitle1">Your Cart is Empty...</Typography>
+    <Typography variant="subtitle1">
+      Your Cart is Empty...{" "}
+      <Link to="/" className={classes.link}>
+        Add Something
+      </Link>
+    </Typography>
   );
 
   const FilledCart = () => (
