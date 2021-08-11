@@ -3,26 +3,7 @@ import { Grid } from "@material-ui/core";
 import Product from "./Product/Product";
 import useStyles from "./styles";
 
-const products = [
-  {
-    id: 1,
-    name: "Shoes",
-    description: "Travis Scott x Fragment x Air Jordan 1",
-    price: "$170",
-    image:
-      "https://sneakerbardetroit.com/wp-content/uploads/2021/07/Travis-Scott-Fragment-Air-Jordan-1-Low-DM7866-140-Release-Date.jpg",
-  },
-  {
-    id: 2,
-    name: "Shoes",
-    description: "Nike Dunk Low Black Multi Camo",
-    price: "$110",
-    image:
-      "https://sneakerbardetroit.com/wp-content/uploads/2021/07/Nike-Dunk-Low-Black-Multi-Camo-DH0957-001-Release-Date.jpg",
-  },
-];
-
-const Products = () => {
+const Products = ({ products }) => {
   const classes = useStyles();
   return (
     <main className={classes.content}>
