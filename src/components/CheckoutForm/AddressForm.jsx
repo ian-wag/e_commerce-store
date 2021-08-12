@@ -19,12 +19,12 @@ const AddressForm = ({ checkoutToken }) => {
   const [shippingOptions, setShippingOptions] = useState([]);
   const [shippingOption, setShippingOption] = useState("");
   const methods = useForm();
-
+  //changes countries object into array and maps through array
   const countries = Object.entries(shippingCountries).map(([code, name]) => ({
     id: code,
     label: name,
   }));
-
+  //changes subdivisions object into array and maps through array
   const subdivisions = Object.entries(shippingSubdivisions).map(
     ([code, name]) => ({
       id: code,
@@ -85,7 +85,7 @@ const AddressForm = ({ checkoutToken }) => {
                 ))}
               </Select>
             </Grid>
-            <FormInput required name="zip" label="Zip code/Postal Code" />
+            <FormInput required name="zip" label="Zip Code/Postal Code" />
             <Grid item xs={12} sm={6}>
               <InputLabel>Country</InputLabel>
               <Select
