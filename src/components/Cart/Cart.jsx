@@ -25,7 +25,7 @@ const Cart = ({
     <>
       <Grid container spacing={3}>
         {cart.line_items.map((item) => (
-          <Grid xs={12} sm={4} key={item.id}>
+          <Grid item xs={12} sm={4} key={item.id}>
             <CartItem
               item={item}
               handleUpdateCartQty={handleUpdateCartQty}
@@ -50,6 +50,8 @@ const Cart = ({
             Empty Cart
           </Button>
           <Button
+            component={Link}
+            to="/checkout"
             className={classes.checkoutButton}
             size="large"
             type="button"
