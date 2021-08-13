@@ -99,7 +99,7 @@ const AddressForm = ({ checkoutToken }) => {
             <FormInput required name="email" label="Email" />
             <FormInput required name="city" label="City" />
             <Grid item xs={12} sm={6}>
-              <InputLabel>State/Region</InputLabel>
+              <InputLabel required>State/Region</InputLabel>
               <Select
                 value={shippingSubdivision}
                 fullWidth
@@ -114,9 +114,10 @@ const AddressForm = ({ checkoutToken }) => {
             </Grid>
             <FormInput required name="zip" label="Zip Code/Postal Code" />
             <Grid item xs={12} sm={6}>
-              <InputLabel>Country</InputLabel>
+              <InputLabel required>Country</InputLabel>
               <Select
                 value={shippingCountry}
+                required
                 fullWidth
                 onChange={(e) => setShippingCountry(e.target.value)}
               >
@@ -128,7 +129,7 @@ const AddressForm = ({ checkoutToken }) => {
               </Select>
             </Grid>
             <Grid item xs={12} sm={6}>
-              <InputLabel>Shipping Options</InputLabel>
+              <InputLabel required>Shipping Options</InputLabel>
               <Select
                 value={shippingOption}
                 fullWidth
