@@ -11,8 +11,14 @@ import Review from "./Review";
 
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
 
-const PaymentForm = ({ checkoutToken, backStep }) => {
-  const handleSubmit = (event, elements, stripe) => {
+const PaymentForm = ({
+  checkoutToken,
+  shippingData,
+  backStep,
+  onCaptureCheckout,
+  nextStep,
+}) => {
+  const handleSubmit = async (event, elements, stripe) => {
     event.preventDefault();
 
     if (!stripe || !elements) return;
@@ -23,31 +29,42 @@ const PaymentForm = ({ checkoutToken, backStep }) => {
       type: "card",
       card: cardElement,
     });
-
     if (error) {
       console.log(error);
     } else {
       const orderData = {
         line_items: checkoutToken.live.line_items,
         customer: {
-          firstname: shippingData.firstname,
-          lastname: shippingData.lastname,
+          firstname: shippingData.firstName,
+          lastname: shippingData.lastName,
           email: shippingData.email,
         },
         shipping: {
           name: "Primary",
           street: shippingData.address1,
-          town_city: shippingData.town_city,
+          town_city: shippingData.city,
           county_state: shippingData.shippingSubdivision,
           postal_zip_code: shippingData.zip,
           country: shippingData.shippingCountry,
         },
-        fufillment: { shipping_method: shippingData.shippingOption },
+        billing: {
+          name: "Primary",
+          street: shippingData.address1,
+          town_city: shippingData.city,
+          county_state: shippingData.shippingSubdivision,
+          postal_zip_code: shippingData.zip,
+          country: shippingData.shippingCountry,
+        },
+        fulfillment: { shipping_method: shippingData.shippingOption },
         payment: {
           gateway: "stripe",
           stripe: { payment_method_id: paymentMethod.id },
         },
       };
+
+      onCaptureCheckout(checkoutToken.id, orderData);
+
+      nextStep();
     }
   };
   return (
